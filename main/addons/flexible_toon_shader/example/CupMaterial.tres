@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://konhnqnbl47a"]
+
+[ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="1_a3q6o"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a3q6o")

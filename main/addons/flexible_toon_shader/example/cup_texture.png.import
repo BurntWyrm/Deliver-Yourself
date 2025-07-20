@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfrrhdom1wv0t"
-path.s3tc="res://.godot/imported/texture_01.png-db77b108a379c5ee1af9baf5a773f3de.s3tc.ctex"
+uid="uid://ridr5kn451ni"
+path.s3tc="res://.godot/imported/cup_texture.png-248b9ddc88aa7c0fd85bab1be0a04e72.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/kenney_prototype-textures/PNG/Red/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-db77b108a379c5ee1af9baf5a773f3de.s3tc.ctex"]
+source_file="res://addons/flexible_toon_shader/example/cup_texture.png"
+dest_files=["res://.godot/imported/cup_texture.png-248b9ddc88aa7c0fd85bab1be0a04e72.s3tc.ctex"]
 
 [params]
 
