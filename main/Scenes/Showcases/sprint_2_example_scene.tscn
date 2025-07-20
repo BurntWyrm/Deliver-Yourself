@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3usrqj7v2imc"]
+[gd_scene load_steps=23 format=3 uid="uid://c3usrqj7v2imc"]
 
 [ext_resource type="Script" uid="uid://b17w44ow13w0p" path="res://Scripts/CameraScripts/camera_pivot.gd" id="1_2aq5t"]
+[ext_resource type="Shader" uid="uid://bn7ril86qwtly" path="res://Shaders/edge_detection.gdshader" id="2_clo0x"]
 [ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_mbst0"]
 [ext_resource type="Texture2D" uid="uid://b3ftoitfb6g4i" path="res://Assets/kenney_prototype-textures/PNG/Green/texture_09.png" id="3_mbst0"]
 
@@ -17,6 +18,19 @@ sky_material = SubResource("ProceduralSkyMaterial_pqgr2")
 [sub_resource type="Environment" id="Environment_2aq5t"]
 background_mode = 2
 sky = SubResource("Sky_00cru")
+
+[sub_resource type="QuadMesh" id="QuadMesh_clo0x"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmg16"]
+render_priority = 0
+shader = ExtResource("2_clo0x")
+shader_parameter/lightIntensity = 1.0
+shader_parameter/lineAlpha = 0.5
+shader_parameter/useLighting = true
+shader_parameter/lineHighlight = 0.2
+shader_parameter/lineShadow = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_2aq5t"]
 size = Vector3(5, 0.5, 5)
@@ -209,6 +223,7 @@ render_target_update_mode = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Environment"]
 transform = Transform3D(0.92388, -0.213994, 0.317259, 0, 0.829037, 0.559193, -0.382683, -0.516627, 0.765931, 0, 4.07738, 0)
+light_energy = 0.015
 shadow_enabled = true
 shadow_opacity = 0.7
 shadow_blur = 0.1
@@ -221,7 +236,6 @@ environment = SubResource("Environment_2aq5t")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.26462, 0)
-visible = false
 light_energy = 0.915
 shadow_enabled = true
 
@@ -233,6 +247,11 @@ transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.7071
 projection = 1
 size = 4.005
 far = 50.0
+
+[node name="EdgeDetection" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CameraPivot/MainCamera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_clo0x")
+surface_material_override/0 = SubResource("ShaderMaterial_bmg16")
 
 [node name="Showcase" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
