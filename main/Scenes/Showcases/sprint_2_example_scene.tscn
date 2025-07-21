@@ -1,9 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://c3usrqj7v2imc"]
+[gd_scene load_steps=26 format=3 uid="uid://c3usrqj7v2imc"]
 
 [ext_resource type="Script" uid="uid://b17w44ow13w0p" path="res://Scripts/CameraScripts/camera_pivot.gd" id="1_2aq5t"]
 [ext_resource type="Shader" uid="uid://bn7ril86qwtly" path="res://Shaders/edge_detection.gdshader" id="2_clo0x"]
 [ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_mbst0"]
 [ext_resource type="Texture2D" uid="uid://b3ftoitfb6g4i" path="res://Assets/kenney_prototype-textures/PNG/Green/texture_09.png" id="3_mbst0"]
+[ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="5_lj1sm"]
+[ext_resource type="PackedScene" uid="uid://b2v0yvmmqkpm1" path="res://Prefabs/Player/Assets/Visuals/Gift.glb" id="6_dmme7"]
+[ext_resource type="PackedScene" uid="uid://3dq04xvsm1uj" path="res://Prefabs/Player/Assets/Visuals/Letter.glb" id="7_c6x4e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqgr2"]
 sky_top_color = Color(0.227451, 0.25098, 0.352941, 1)
@@ -236,7 +239,6 @@ environment = SubResource("Environment_2aq5t")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Environment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.26462, 0)
-light_energy = 0.915
 shadow_enabled = true
 
 [node name="CameraPivot" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -287,3 +289,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_clo0x")
 transform = Transform3D(0.403567, 0, 0.358795, 0, 0.54, 0, -0.358795, 0, 0.403567, -0.108, 0.347, 1.049)
 mesh = SubResource("TorusMesh_lj1sm")
 surface_material_override/0 = SubResource("ShaderMaterial_c6x4e")
+
+[node name="Box" parent="." instance=ExtResource("5_lj1sm")]
+transform = Transform3D(-0.891624, 0, 0.452777, 0, 1, 0, -0.452777, 0, -0.891624, 0.427612, 1.13393, 0.537812)
+
+[node name="Gift" parent="." instance=ExtResource("6_dmme7")]
+transform = Transform3D(0.651556, -0.24615, 0.717555, 0, 0.945893, 0.324479, -0.758601, -0.211416, 0.616302, 0.512622, 1.35439, -0.352431)
+
+[node name="Letter2" parent="." instance=ExtResource("7_c6x4e")]
+transform = Transform3D(0.54176, 0.486435, 0.685475, -0.797286, 0.55562, 0.235843, -0.266142, -0.67429, 0.688841, 1.29193, 1.47114, -0.00380855)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkv58dnhepail"]
+[gd_scene load_steps=10 format=3 uid="uid://bkv58dnhepail"]
 
 [ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="1_gycof"]
 [ext_resource type="Texture2D" uid="uid://d24fh1m8cui7y" path="res://Assets/kenney_prototype-textures/PNG/Light/texture_07.png" id="2_n1m62"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_n1m62"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ythbg"]
 
@@ -64,8 +65,13 @@ environment = SubResource("Environment_gycof")
 
 [node name="Lighting" type="Node" parent="SubViewportContainer/SubViewport/Environment"]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Environment/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.54623, 0)
+shadow_enabled = true
+
 [node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Environment"]
 transform = Transform3D(0.92388, -0.213994, 0.317259, 0, 0.829037, 0.559193, -0.382683, -0.516627, 0.765931, 0, 4.07738, 0)
+light_energy = 0.118
 shadow_enabled = true
 shadow_opacity = 0.7
 shadow_blur = 0.1
@@ -83,3 +89,13 @@ surface_material_override/0 = SubResource("ShaderMaterial_6w3qm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Map/Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gycof")
+
+[node name="Camera" type="Node" parent="SubViewportContainer/SubViewport"]
+
+[node name="MainCamera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Camera"]
+
+[node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera/MainCamera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_n1m62")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca53pcskbfcnn"]
+
+[ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="1_svjbf"]
+[ext_resource type="Shape3D" uid="uid://c8m336vq6agtu" path="res://Prefabs/Player/Assets/Collisions/BoxCollision.tres" id="2_bbhvi"]
+
+[node name="Player3D" type="RigidBody3D"]
+
+[node name="MorphVisuals" type="Node3D" parent="."]
+
+[node name="Box" parent="MorphVisuals" instance=ExtResource("1_svjbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+
+[node name="StateMachineMorph" type="Node" parent="."]
+
+[node name="StateMachineBox" type="Node" parent="StateMachineMorph"]
+
+[node name="StateMachineGift" type="Node" parent="StateMachineMorph"]
+
+[node name="StateMachineLetter" type="Node" parent="StateMachineMorph"]
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+shape = ExtResource("2_bbhvi")
