@@ -1,22 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca53pcskbfcnn"]
+[gd_scene load_steps=8 format=3 uid="uid://ca53pcskbfcnn"]
 
+[ext_resource type="Script" uid="uid://b53478pck0snu" path="res://Prefabs/Player/Scripts/Player.gd" id="1_nld07"]
 [ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="1_svjbf"]
 [ext_resource type="Shape3D" uid="uid://c8m336vq6agtu" path="res://Prefabs/Player/Assets/Collisions/BoxCollision.tres" id="2_bbhvi"]
+[ext_resource type="Script" uid="uid://b12omv6gv7id7" path="res://Prefabs/Player/Scripts/Morphs/morph_swap_machine.gd" id="4_e341d"]
+[ext_resource type="Script" uid="uid://cdljwfmnmapk6" path="res://Prefabs/Player/Scripts/States/box_state_machine.gd" id="5_dtuc5"]
+[ext_resource type="Script" uid="uid://o60wtnkynice" path="res://Prefabs/Player/Scripts/States/gift_state_machine.gd" id="6_7rqso"]
+[ext_resource type="Script" uid="uid://bndqefev8uli4" path="res://Prefabs/Player/Scripts/States/letter_state_machine.gd" id="7_bjvkh"]
 
 [node name="Player3D" type="RigidBody3D"]
+script = ExtResource("1_nld07")
 
 [node name="MorphVisuals" type="Node3D" parent="."]
 
 [node name="Box" parent="MorphVisuals" instance=ExtResource("1_svjbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 
-[node name="StateMachineMorph" type="Node" parent="."]
-
-[node name="StateMachineBox" type="Node" parent="StateMachineMorph"]
-
-[node name="StateMachineGift" type="Node" parent="StateMachineMorph"]
-
-[node name="StateMachineLetter" type="Node" parent="StateMachineMorph"]
-
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = ExtResource("2_bbhvi")
+
+[node name="MorphSwapMachine" type="Node" parent="." node_paths=PackedStringArray("starting_morph")]
+script = ExtResource("4_e341d")
+starting_morph = NodePath("BoxStateMachine")
+
+[node name="BoxStateMachine" type="Node" parent="MorphSwapMachine" node_paths=PackedStringArray("gift_morph", "letter_morph")]
+script = ExtResource("5_dtuc5")
+gift_morph = NodePath("../GiftStateMachine")
+letter_morph = NodePath("../LetterStateMachine")
+
+[node name="Idle" type="Node" parent="MorphSwapMachine/BoxStateMachine"]
+
+[node name="Jump" type="Node" parent="MorphSwapMachine/BoxStateMachine"]
+
+[node name="Move" type="Node" parent="MorphSwapMachine/BoxStateMachine"]
+
+[node name="GiftStateMachine" type="Node" parent="MorphSwapMachine" node_paths=PackedStringArray("box_morph", "letter_morph")]
+script = ExtResource("6_7rqso")
+box_morph = NodePath("../BoxStateMachine")
+letter_morph = NodePath("../LetterStateMachine")
+
+[node name="Idle" type="Node" parent="MorphSwapMachine/GiftStateMachine"]
+
+[node name="Move" type="Node" parent="MorphSwapMachine/GiftStateMachine"]
+
+[node name="LetterStateMachine" type="Node" parent="MorphSwapMachine" node_paths=PackedStringArray("box_morph", "gift_morph")]
+script = ExtResource("7_bjvkh")
+box_morph = NodePath("../BoxStateMachine")
+gift_morph = NodePath("../GiftStateMachine")
+
+[node name="Idle" type="Node" parent="MorphSwapMachine/LetterStateMachine"]
+
+[node name="Move" type="Node" parent="MorphSwapMachine/LetterStateMachine"]
