@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca53pcskbfcnn"]
+[gd_scene load_steps=12 format=3 uid="uid://ca53pcskbfcnn"]
 
 [ext_resource type="Script" uid="uid://dgigh5hp7pais" path="res://Prefabs/Player/Scripts/player_3d.gd" id="1_nld07"]
 [ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="1_svjbf"]
@@ -6,7 +6,11 @@
 [ext_resource type="Script" uid="uid://db2vhp0gbat8i" path="res://Prefabs/Player/Scripts/MorphMachine/morph_machine.gd" id="4_e341d"]
 [ext_resource type="Script" uid="uid://cnkvow04mdrs7" path="res://Prefabs/Player/Scripts/MorphMachine/Box/box_morph.gd" id="5_dtuc5"]
 [ext_resource type="Script" uid="uid://7af62ls0diyo" path="res://Prefabs/Player/Scripts/MorphMachine/Box/gift_morph.gd" id="6_bjvkh"]
+[ext_resource type="Script" uid="uid://8v7sv1g0hhkf" path="res://Prefabs/Player/Scripts/MovementStates/movement_machine.gd" id="6_rtq3s"]
+[ext_resource type="Script" uid="uid://cmytysfbug5lj" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxIdle.gd" id="7_qb1nn"]
 [ext_resource type="Script" uid="uid://c8dnrk3bnoj5t" path="res://Prefabs/Player/Scripts/MorphMachine/Box/letter_morph.gd" id="7_rtq3s"]
+[ext_resource type="Script" uid="uid://kdydv3w4vbmf" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxJump.gd" id="8_xyqwj"]
+[ext_resource type="Script" uid="uid://7k55ejrtkrvi" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxMove.gd" id="9_0coj3"]
 
 [node name="Player3D" type="RigidBody3D"]
 script = ExtResource("1_nld07")
@@ -28,12 +32,49 @@ script = ExtResource("5_dtuc5")
 Gift = NodePath("../GiftMorph")
 Letter = NodePath("../LetterMorph")
 
+[node name="MovementMachine" type="Node" parent="MorphMachine/BoxMorph" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("6_rtq3s")
+starting_state = NodePath("BoxIdle")
+
+[node name="BoxMove" type="Node" parent="MorphMachine/BoxMorph/MovementMachine" node_paths=PackedStringArray("BoxJump", "BoxIdle")]
+script = ExtResource("9_0coj3")
+BoxJump = NodePath("../BoxJump")
+BoxIdle = NodePath("../BoxIdle")
+
+[node name="BoxJump" type="Node" parent="MorphMachine/BoxMorph/MovementMachine" node_paths=PackedStringArray("BoxMove", "BoxIdle")]
+script = ExtResource("8_xyqwj")
+BoxMove = NodePath("../BoxMove")
+BoxIdle = NodePath("../BoxIdle")
+
+[node name="BoxIdle" type="Node" parent="MorphMachine/BoxMorph/MovementMachine" node_paths=PackedStringArray("BoxMove", "BoxJump")]
+script = ExtResource("7_qb1nn")
+BoxMove = NodePath("../BoxMove")
+BoxJump = NodePath("../BoxJump")
+
 [node name="GiftMorph" type="Node" parent="MorphMachine" node_paths=PackedStringArray("Box", "Letter")]
 script = ExtResource("6_bjvkh")
 Box = NodePath("../BoxMorph")
 Letter = NodePath("../LetterMorph")
 
+[node name="MovementMachine" type="Node" parent="MorphMachine/GiftMorph"]
+script = ExtResource("6_rtq3s")
+
+[node name="GiftIdle" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+
+[node name="GiftMove" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+
+[node name="GiftShoot" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+
 [node name="LetterMorph" type="Node" parent="MorphMachine" node_paths=PackedStringArray("Gift", "Box")]
 script = ExtResource("7_rtq3s")
 Gift = NodePath("../GiftMorph")
 Box = NodePath("../BoxMorph")
+
+[node name="MovementMachine" type="Node" parent="MorphMachine/LetterMorph"]
+script = ExtResource("6_rtq3s")
+
+[node name="LetterIdle" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
+
+[node name="LetterMove" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
+
+[node name="LetterFall" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
