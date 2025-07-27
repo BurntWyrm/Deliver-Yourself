@@ -1,20 +1,23 @@
-class_name MorphSwapMachine
 extends Node
 
-@export var starting_morph: Morph
-@export var current_morph: Morph
+@export_group("Morph States")
+@export var starting_morph: State
+@export var current_morph: State
 
-# Initialize the morph swap machine by giving each child state a reference to the
-# parent object it belongs to and enter the default starting_morph.
+# Initialize the state machine by giving each child state a reference to the
+# parent object it belongs to and enter the default starting_state.
+func _ready() -> void:
+	print("Morph Machine: Active")
+
 func init(parent: Player) -> void:
 	for child in get_children():
 		child.parent = parent
 
-	# Initialize to the default morph
+	# Initialize to the default state
 	change_morph(starting_morph)
 
-# Change to the new morph by first calling any exit logic on the current morph.
-func change_morph(new_morph: Morph) -> void:
+# Change to the new state by first calling any exit logic on the current state.
+func change_morph(new_morph: State) -> void:
 	if current_morph:
 		current_morph.exit()
 
