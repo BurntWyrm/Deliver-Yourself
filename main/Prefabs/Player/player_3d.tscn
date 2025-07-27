@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca53pcskbfcnn"]
+[gd_scene load_steps=19 format=3 uid="uid://ca53pcskbfcnn"]
 
 [ext_resource type="Script" uid="uid://dgigh5hp7pais" path="res://Prefabs/Player/Scripts/player_3d.gd" id="1_nld07"]
 [ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="1_svjbf"]
 [ext_resource type="Shape3D" uid="uid://c8m336vq6agtu" path="res://Prefabs/Player/Assets/Collisions/BoxCollision.tres" id="2_bbhvi"]
+[ext_resource type="Material" uid="uid://c36inkrjx5b2k" path="res://Materials/Box_Shader.tres" id="3_xyqwj"]
 [ext_resource type="Script" uid="uid://db2vhp0gbat8i" path="res://Prefabs/Player/Scripts/MorphMachine/morph_machine.gd" id="4_e341d"]
 [ext_resource type="Script" uid="uid://cnkvow04mdrs7" path="res://Prefabs/Player/Scripts/MorphMachine/Box/box_morph.gd" id="5_dtuc5"]
 [ext_resource type="Script" uid="uid://7af62ls0diyo" path="res://Prefabs/Player/Scripts/MorphMachine/Box/gift_morph.gd" id="6_bjvkh"]
@@ -11,6 +12,12 @@
 [ext_resource type="Script" uid="uid://c8dnrk3bnoj5t" path="res://Prefabs/Player/Scripts/MorphMachine/Box/letter_morph.gd" id="7_rtq3s"]
 [ext_resource type="Script" uid="uid://kdydv3w4vbmf" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxJump.gd" id="8_xyqwj"]
 [ext_resource type="Script" uid="uid://7k55ejrtkrvi" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxMove.gd" id="9_0coj3"]
+[ext_resource type="Script" uid="uid://8ya6m4h5iwym" path="res://Prefabs/Player/Scripts/MovementStates/Gift/GiftIdle.gd" id="12_0coj3"]
+[ext_resource type="Script" uid="uid://8l7minnavp8i" path="res://Prefabs/Player/Scripts/MovementStates/Gift/GiftMove.gd" id="13_1eeop"]
+[ext_resource type="Script" uid="uid://0mhl8t0suykd" path="res://Prefabs/Player/Scripts/MovementStates/Gift/GiftShoot.gd" id="14_71twl"]
+[ext_resource type="Script" uid="uid://d2fh7syuuebu5" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterIdle.gd" id="16_np01t"]
+[ext_resource type="Script" uid="uid://0nw661rjkhmi" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterMove.gd" id="17_j70nv"]
+[ext_resource type="Script" uid="uid://6lyad2mri7xi" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterShoot.gd" id="18_nv43c"]
 
 [node name="Player3D" type="RigidBody3D"]
 script = ExtResource("1_nld07")
@@ -19,6 +26,21 @@ script = ExtResource("1_nld07")
 
 [node name="Box" parent="MorphVisuals" instance=ExtResource("1_svjbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+
+[node name="Box_Inside_Flap1" parent="MorphVisuals/Box" index="0"]
+surface_material_override/0 = ExtResource("3_xyqwj")
+
+[node name="Box_Inside_Flap2" parent="MorphVisuals/Box" index="1"]
+surface_material_override/0 = ExtResource("3_xyqwj")
+
+[node name="Box_Outside_Flap1" parent="MorphVisuals/Box" index="2"]
+surface_material_override/0 = ExtResource("3_xyqwj")
+
+[node name="Box_Outside_Flap2" parent="MorphVisuals/Box" index="3"]
+surface_material_override/0 = ExtResource("3_xyqwj")
+
+[node name="Box_Body" parent="MorphVisuals/Box" index="4"]
+surface_material_override/0 = ExtResource("3_xyqwj")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 shape = ExtResource("2_bbhvi")
@@ -56,25 +78,47 @@ script = ExtResource("6_bjvkh")
 Box = NodePath("../BoxMorph")
 Letter = NodePath("../LetterMorph")
 
-[node name="MovementMachine" type="Node" parent="MorphMachine/GiftMorph"]
+[node name="MovementMachine" type="Node" parent="MorphMachine/GiftMorph" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("6_rtq3s")
+starting_state = NodePath("GiftIdle")
 
-[node name="GiftIdle" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+[node name="GiftIdle" type="Node" parent="MorphMachine/GiftMorph/MovementMachine" node_paths=PackedStringArray("GiftMove", "GiftShoot")]
+script = ExtResource("12_0coj3")
+GiftMove = NodePath("../GiftMove")
+GiftShoot = NodePath("../GiftShoot")
 
-[node name="GiftMove" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+[node name="GiftMove" type="Node" parent="MorphMachine/GiftMorph/MovementMachine" node_paths=PackedStringArray("GiftIdle", "GiftShoot")]
+script = ExtResource("13_1eeop")
+GiftIdle = NodePath("../GiftIdle")
+GiftShoot = NodePath("../GiftShoot")
 
-[node name="GiftShoot" type="Node" parent="MorphMachine/GiftMorph/MovementMachine"]
+[node name="GiftShoot" type="Node" parent="MorphMachine/GiftMorph/MovementMachine" node_paths=PackedStringArray("GiftIdle", "GiftMove")]
+script = ExtResource("14_71twl")
+GiftIdle = NodePath("../GiftIdle")
+GiftMove = NodePath("../GiftMove")
 
 [node name="LetterMorph" type="Node" parent="MorphMachine" node_paths=PackedStringArray("Gift", "Box")]
 script = ExtResource("7_rtq3s")
 Gift = NodePath("../GiftMorph")
 Box = NodePath("../BoxMorph")
 
-[node name="MovementMachine" type="Node" parent="MorphMachine/LetterMorph"]
+[node name="MovementMachine" type="Node" parent="MorphMachine/LetterMorph" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("6_rtq3s")
+starting_state = NodePath("LetterIdle")
 
-[node name="LetterIdle" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
+[node name="LetterIdle" type="Node" parent="MorphMachine/LetterMorph/MovementMachine" node_paths=PackedStringArray("LetterMove", "LetterFall")]
+script = ExtResource("16_np01t")
+LetterMove = NodePath("../LetterMove")
+LetterFall = NodePath("../LetterFall")
 
-[node name="LetterMove" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
+[node name="LetterMove" type="Node" parent="MorphMachine/LetterMorph/MovementMachine" node_paths=PackedStringArray("LetterIdle", "LetterFall")]
+script = ExtResource("17_j70nv")
+LetterIdle = NodePath("../LetterIdle")
+LetterFall = NodePath("../LetterFall")
 
-[node name="LetterFall" type="Node" parent="MorphMachine/LetterMorph/MovementMachine"]
+[node name="LetterFall" type="Node" parent="MorphMachine/LetterMorph/MovementMachine" node_paths=PackedStringArray("LetterIdle", "LetterMove")]
+script = ExtResource("18_nv43c")
+LetterIdle = NodePath("../LetterIdle")
+LetterMove = NodePath("../LetterMove")
+
+[editable path="MorphVisuals/Box"]

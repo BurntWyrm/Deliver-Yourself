@@ -2,6 +2,7 @@ shader_type spatial;
 
 uniform vec4 albedo : source_color = vec4(1.0);
 uniform sampler2D albedo_texture : source_color;
+uniform bool use_triplanar = true;
 uniform bool clamp_diffuse_to_max = false;
 
 uniform int cuts : hint_range(1, 8) = 3;
@@ -58,7 +59,12 @@ vec4 triplanar_texture(sampler2D tex, vec3 blend_weights, vec3 pos) {
 }
 
 void fragment() {
-	vec4 tex_color = triplanar_texture(albedo_texture, uv1_power_normal, uv1_triplanar_pos);
+	vec4 tex_color;
+	if (use_triplanar) {
+		tex_color = triplanar_texture(albedo_texture, uv1_power_normal, uv1_triplanar_pos);
+	} else {
+		tex_color = texture(albedo_texture, UV);
+	}
 	ALBEDO = albedo.rgb * tex_color.rgb;
 }
 

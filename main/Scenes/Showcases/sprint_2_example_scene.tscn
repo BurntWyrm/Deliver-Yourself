@@ -1,12 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://c3usrqj7v2imc"]
+[gd_scene load_steps=30 format=3 uid="uid://c3usrqj7v2imc"]
 
 [ext_resource type="Script" uid="uid://b17w44ow13w0p" path="res://Scripts/CameraScripts/camera_pivot.gd" id="1_2aq5t"]
 [ext_resource type="Shader" uid="uid://bn7ril86qwtly" path="res://Shaders/edge_detection.gdshader" id="2_clo0x"]
 [ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_mbst0"]
 [ext_resource type="Texture2D" uid="uid://b3ftoitfb6g4i" path="res://Assets/kenney_prototype-textures/PNG/Green/texture_09.png" id="3_mbst0"]
 [ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="5_lj1sm"]
+[ext_resource type="Texture2D" uid="uid://k5okho4rxgcg" path="res://Prefabs/Player/Assets/Visuals/Box_Box_Pallet.png" id="6_c6x4e"]
 [ext_resource type="PackedScene" uid="uid://b2v0yvmmqkpm1" path="res://Prefabs/Player/Assets/Visuals/Gift.glb" id="6_dmme7"]
 [ext_resource type="PackedScene" uid="uid://3dq04xvsm1uj" path="res://Prefabs/Player/Assets/Visuals/Letter.glb" id="7_c6x4e"]
+[ext_resource type="Texture2D" uid="uid://3gsf812g5bv7" path="res://Prefabs/Player/Assets/Visuals/Letter_envelop_pallet.png" id="9_c6x4e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pqgr2"]
 sky_top_color = Color(0.227451, 0.25098, 0.352941, 1)
@@ -43,6 +45,7 @@ render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("3_mbst0")
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
 shader_parameter/wrap = 0.0
@@ -67,6 +70,7 @@ shader_parameter/uv1_blend_sharpness = 32.0
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(1, 0, 0.833333, 1)
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 5
 shader_parameter/wrap = 0.0
@@ -89,6 +93,7 @@ shader_parameter/uv1_blend_sharpness = 32.0
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(0.809499, 0.345156, 1.92523e-07, 1)
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 4
 shader_parameter/wrap = 0.0
@@ -114,6 +119,7 @@ material = SubResource("ShaderMaterial_dcd8m")
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(1, 0.883333, 0, 1)
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 6
 shader_parameter/wrap = 0.0
@@ -139,6 +145,7 @@ material = SubResource("ShaderMaterial_lj1sm")
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(0.916667, 0, 1, 1)
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
 shader_parameter/wrap = 0.0
@@ -163,6 +170,7 @@ shader_parameter/uv1_blend_sharpness = 32.0
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(0, 1, 0.883333, 1)
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 6
 shader_parameter/wrap = 0.0
@@ -187,6 +195,55 @@ shader_parameter/uv1_blend_sharpness = 32.0
 render_priority = 0
 shader = ExtResource("2_mbst0")
 shader_parameter/albedo = Color(0, 1, 0.683333, 1)
+shader_parameter/use_triplanar = true
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 3
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 32.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tc6dn"]
+render_priority = 0
+shader = ExtResource("2_mbst0")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("6_c6x4e")
+shader_parameter/use_triplanar = false
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 3
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv1_blend_sharpness = 32.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1xq3"]
+render_priority = 0
+shader = ExtResource("2_mbst0")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("9_c6x4e")
+shader_parameter/use_triplanar = false
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
 shader_parameter/wrap = 0.0
@@ -293,8 +350,18 @@ surface_material_override/0 = SubResource("ShaderMaterial_c6x4e")
 [node name="Box" parent="." instance=ExtResource("5_lj1sm")]
 transform = Transform3D(-0.891624, 0, 0.452777, 0, 1, 0, -0.452777, 0, -0.891624, 0.427612, 1.13393, 0.537812)
 
+[node name="Box_Body" parent="Box" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_tc6dn")
+
 [node name="Gift" parent="." instance=ExtResource("6_dmme7")]
 transform = Transform3D(0.651556, -0.24615, 0.717555, 0, 0.945893, 0.324479, -0.758601, -0.211416, 0.616302, 0.512622, 1.35439, -0.352431)
 
 [node name="Letter2" parent="." instance=ExtResource("7_c6x4e")]
 transform = Transform3D(0.54176, 0.486435, 0.685475, -0.797286, 0.55562, 0.235843, -0.266142, -0.67429, 0.688841, 1.29193, 1.47114, -0.00380855)
+
+[node name="Letter" parent="Letter2" index="0"]
+transform = Transform3D(1, 0, -1.49012e-08, 1.49012e-08, 1, 2.98023e-08, -1.19209e-07, 0, 1, -0.215837, -0.193796, -0.273093)
+surface_material_override/0 = SubResource("ShaderMaterial_m1xq3")
+
+[editable path="Box"]
+[editable path="Letter2"]
