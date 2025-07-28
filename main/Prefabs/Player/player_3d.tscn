@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://6lyad2mri7xi" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterShoot.gd" id="18_nv43c"]
 
 [node name="Player3D" type="RigidBody3D"]
+continuous_cd = true
 script = ExtResource("1_nld07")
 
 [node name="MorphVisuals" type="Node3D" parent="."]

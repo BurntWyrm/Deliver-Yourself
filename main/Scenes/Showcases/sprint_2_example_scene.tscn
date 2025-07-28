@@ -304,7 +304,7 @@ script = ExtResource("1_2aq5t")
 [node name="MainCamera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CameraPivot"]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 2.25, 2, 2.25)
 projection = 1
-size = 4.005
+size = 3.43
 far = 50.0
 
 [node name="EdgeDetection" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/CameraPivot/MainCamera3D"]

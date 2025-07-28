@@ -4,8 +4,12 @@ extends State
 @export var BoxMove: State
 @export var BoxIdle: State
 
+@export_group("Stats")
+@export var jump_power := 5
 func enter() -> void:
 	print("Box: Jump")
+	parent.apply_impulse(parent.basis.y * 5)
+	parent.angular_velocity = Vector3.ZERO
 
 func exit() -> void:
 	pass
