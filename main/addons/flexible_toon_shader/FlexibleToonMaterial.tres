@@ -8,6 +8,7 @@ render_priority = 0
 shader = ExtResource("1_pis2y")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_jc6ge")
+shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 6
 shader_parameter/wrap = 0.0
