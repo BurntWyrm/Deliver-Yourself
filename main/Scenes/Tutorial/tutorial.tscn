@@ -27,7 +27,7 @@ shader_parameter/use_triplanar = true
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
 shader_parameter/wrap = 0.0
-shader_parameter/steepness = 1.0
+shader_parameter/steepness = 2.17
 shader_parameter/use_attenuation = true
 shader_parameter/use_specular = false
 shader_parameter/specular_strength = 1.0
@@ -100,7 +100,7 @@ environment = SubResource("Environment_gycof")
 [node name="Lighting" type="Node" parent="SubViewportContainer/SubViewport/Environment"]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Environment/Lighting"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.54623, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.65967, 0)
 shadow_enabled = true
 
 [node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Environment"]
