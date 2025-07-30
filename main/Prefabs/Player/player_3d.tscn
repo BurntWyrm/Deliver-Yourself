@@ -1,11 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://ca53pcskbfcnn"]
+[gd_scene load_steps=33 format=3 uid="uid://ca53pcskbfcnn"]
 
 [ext_resource type="Script" uid="uid://dgigh5hp7pais" path="res://Prefabs/Player/Scripts/player_3d.gd" id="1_nld07"]
 [ext_resource type="PackedScene" uid="uid://bgk2h58i8b82w" path="res://Prefabs/Player/Assets/Visuals/Box.glb" id="1_svjbf"]
-[ext_resource type="Shape3D" uid="uid://c8m336vq6agtu" path="res://Prefabs/Player/Assets/Collisions/BoxCollision.tres" id="2_bbhvi"]
+[ext_resource type="PackedScene" uid="uid://b2v0yvmmqkpm1" path="res://Prefabs/Player/Assets/Visuals/Gift.glb" id="2_6eu08"]
 [ext_resource type="Material" uid="uid://c36inkrjx5b2k" path="res://Materials/Box_Shader.tres" id="3_xyqwj"]
 [ext_resource type="Script" uid="uid://db2vhp0gbat8i" path="res://Prefabs/Player/Scripts/MorphMachine/morph_machine.gd" id="4_e341d"]
+[ext_resource type="PackedScene" uid="uid://3dq04xvsm1uj" path="res://Prefabs/Player/Assets/Visuals/Letter.glb" id="5_ascna"]
 [ext_resource type="Script" uid="uid://cnkvow04mdrs7" path="res://Prefabs/Player/Scripts/MorphMachine/Box/box_morph.gd" id="5_dtuc5"]
+[ext_resource type="Shape3D" uid="uid://wlwxj8nlmtw6" path="res://Prefabs/Player/Assets/Collisions/GiftCollision.tres" id="6_6eu08"]
 [ext_resource type="Script" uid="uid://7af62ls0diyo" path="res://Prefabs/Player/Scripts/MorphMachine/Box/gift_morph.gd" id="6_bjvkh"]
 [ext_resource type="Script" uid="uid://8v7sv1g0hhkf" path="res://Prefabs/Player/Scripts/MovementStates/movement_machine.gd" id="6_rtq3s"]
 [ext_resource type="Script" uid="uid://cmytysfbug5lj" path="res://Prefabs/Player/Scripts/MovementStates/Box/BoxIdle.gd" id="7_qb1nn"]
@@ -19,6 +21,7 @@
 [ext_resource type="Script" uid="uid://0nw661rjkhmi" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterMove.gd" id="17_j70nv"]
 [ext_resource type="Script" uid="uid://6lyad2mri7xi" path="res://Prefabs/Player/Scripts/MovementStates/Letter/LetterShoot.gd" id="18_nv43c"]
 [ext_resource type="Shader" uid="uid://chr20l13rdm7l" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="19_nv43c"]
+[ext_resource type="Shape3D" uid="uid://fqydt82oflel" path="res://Prefabs/Player/Assets/Collisions/LetterCollision.tres" id="21_ascna"]
 
 [sub_resource type="Animation" id="Animation_npgmu"]
 resource_name = "Box_Morph"
@@ -32,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_bbhvi")]
+"values": [ExtResource("6_6eu08")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -45,6 +48,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -0.001, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MorphVisuals/Gift:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MorphVisuals/Letter:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MorphVisuals/Box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6eu08"]
@@ -59,7 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_bbhvi")]
+"values": [ExtResource("6_6eu08")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -73,10 +112,198 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, -0.001, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Poof/Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MorphVisuals/Gift:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MorphVisuals/Letter:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MorphVisuals/Box:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ascna"]
+resource_name = "Gift_Morph"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCollision:shape")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_6eu08")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCollision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.001, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MorphVisuals/Box:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MorphVisuals/Letter:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MorphVisuals/Gift:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mkw1h"]
+resource_name = "Letter_Morph"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCollision:shape")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_ascna")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCollision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.001, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Poof/Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MorphVisuals/Gift:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MorphVisuals/Box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MorphVisuals/Letter:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ascna"]
 _data = {
 &"Box_Morph": SubResource("Animation_npgmu"),
+&"Gift_Morph": SubResource("Animation_ascna"),
+&"Letter_Morph": SubResource("Animation_mkw1h"),
 &"RESET": SubResource("Animation_6eu08")
 }
 
@@ -133,6 +360,10 @@ script = ExtResource("1_nld07")
 
 [node name="MorphVisuals" type="Node3D" parent="."]
 
+[node name="Gift" parent="MorphVisuals" instance=ExtResource("2_6eu08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183418, 0)
+visible = false
+
 [node name="Box" parent="MorphVisuals" instance=ExtResource("1_svjbf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 
@@ -151,9 +382,13 @@ surface_material_override/0 = ExtResource("3_xyqwj")
 [node name="Box_Body" parent="MorphVisuals/Box" index="4"]
 surface_material_override/0 = ExtResource("3_xyqwj")
 
+[node name="Letter" parent="MorphVisuals" instance=ExtResource("5_ascna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00894929, 0.00414951, 0)
+visible = false
+
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0)
-shape = ExtResource("2_bbhvi")
+shape = ExtResource("6_6eu08")
 
 [node name="MorphMachine" type="Node" parent="." node_paths=PackedStringArray("starting_morph")]
 script = ExtResource("4_e341d")
