@@ -8,6 +8,7 @@ extends State
 func enter() -> void:
 	print("Morph: Letter")
 	movement_machine.init(parent)
+	parent.animation_player.play("Letter_Morph")
 
 func exit() -> void:
 	movement_machine.deinit()

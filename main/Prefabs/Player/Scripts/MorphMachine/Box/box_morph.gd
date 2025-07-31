@@ -9,6 +9,7 @@ extends State
 func enter() -> void:
 	print("Morph: Box")
 	movement_machine.init(parent)
+	parent.animation_player.play("Box_Morph")
 
 func exit() -> void:
 	movement_machine.deinit()

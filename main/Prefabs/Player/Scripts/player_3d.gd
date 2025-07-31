@@ -5,6 +5,7 @@ extends RigidBody3D
 @onready var _camera: Camera3D
 @onready var _player_camera: PhantomCamera3D
 @onready var smoke: GPUParticles3D = %Smoke
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,

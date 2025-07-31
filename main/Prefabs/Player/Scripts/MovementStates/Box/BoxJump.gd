@@ -25,6 +25,7 @@ func enter() -> void:
 			jump_cd.start()
 	else:
 		print("Jump on cooldown.")
+
 func exit() -> void:
 	pass
 

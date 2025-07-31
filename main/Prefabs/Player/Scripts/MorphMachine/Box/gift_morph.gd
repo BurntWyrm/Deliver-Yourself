@@ -8,9 +8,14 @@ extends State
 func enter() -> void:
 	print("Morph: Gift")
 	movement_machine.init(parent)
+	parent.animation_player.play("Gift_Morph")
+	parent.axis_lock_angular_x = true
+	parent.axis_lock_angular_z = true
 
 func exit() -> void:
 	movement_machine.deinit()
+	parent.axis_lock_angular_x = false
+	parent.axis_lock_angular_z = false
 
 ## Process Input for changing morphs
 func process_input(event: InputEvent) -> State:

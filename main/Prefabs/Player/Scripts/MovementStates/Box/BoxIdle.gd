@@ -12,7 +12,7 @@ func exit() -> void:
 
 ## Process Input for changing movement states
 func process_input(event: InputEvent) -> State:
-	if Input.get_vector("move_left","move_right","move_forward","move_back"):
+	if Input.get_vector("move_left","move_right","move_forward","move_back") or Input.is_action_just_pressed("jump"):
 		return BoxMove
 	if Input.is_action_just_pressed("jump"):
 		return BoxJump
