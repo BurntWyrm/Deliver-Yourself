@@ -577,6 +577,10 @@ unique_name_in_owner = true
 wait_time = 2.25
 one_shot = true
 
+[node name="GiftMoveCD" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ascna")
@@ -600,6 +604,7 @@ draw_pass_1 = SubResource("SphereMesh_7fswp")
 
 [connection signal="timeout" from="Timers/JumpCD" to="MorphMachine/BoxMorph/MovementMachine/BoxJump" method="_on_jump_cd_timeout"]
 [connection signal="timeout" from="Timers/MorphingCD" to="MorphMachine" method="_on_morphing_cd_timeout"]
+[connection signal="timeout" from="Timers/GiftMoveCD" to="MorphMachine/GiftMorph/MovementMachine/GiftMove" method="_on_gift_move_cd_timeout"]
 
 [editable path="MorphVisuals/Gift"]
 [editable path="MorphVisuals/Box"]
